@@ -47,4 +47,23 @@
         </repository>
     </distributionManagement>
 
+    <scm>
+        <connection>scm:git:${project.scm.url}</connection>
+        <developerConnection>scm:git:${project.scm.url}</developerConnection>
+        <url>https://github.com/PolyRocketMatt/Vectorize.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <scmCommentPrefix>[ci skip]</scmCommentPrefix>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

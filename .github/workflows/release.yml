@@ -1,0 +1,21 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Release
+        uses: qcastel/github-actions-maven-release@master
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          version-major: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
