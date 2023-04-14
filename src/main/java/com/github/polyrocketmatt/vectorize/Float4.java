@@ -2,7 +2,13 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
-public record Float4(float x, float y, float z, float w) implements Vector<Float> {
+/**
+ * Represents an immutable 4-dimensional vector of floats.
+ *
+ * @author Matthias Kovacic
+ * @since 1.0.0
+ */
+public record Float4(float x, float y, float z, float w) implements Vector4<Float> {
 
     @Override
     public @NotNull Float4 add(@NotNull Vector<Float> other) {

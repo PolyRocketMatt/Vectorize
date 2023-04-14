@@ -2,6 +2,12 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Represents an immutable 3-dimensional vector of integers.
+ *
+ * @author Matthias Kovacic
+ * @since 1.0.0
+ */
 public record Int3(int x, int y, int z) implements Vector3<Integer> {
 
     @Override

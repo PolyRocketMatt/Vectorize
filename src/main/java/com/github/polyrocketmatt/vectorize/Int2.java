@@ -2,7 +2,13 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
-public record Int2(int x, int y) implements Vector<Integer> {
+/**
+ * Represents an immutable 2-dimensional vector of integers.
+ *
+ * @author Matthias Kovacic
+ * @since 1.0.0
+ */
+public record Int2(int x, int y) implements Vector2<Integer> {
 
     @Override
     public @NotNull Int2 add(@NotNull Vector<Integer> other) {
@@ -130,6 +136,7 @@ public record Int2(int x, int y) implements Vector<Integer> {
         return dx * dx + dy * dy;
     }
 
+    @Override
     public @NotNull Double2 rotate(double angle) {
         double cos = Math.cos(angle);
         double sin = Math.sin(angle);
