@@ -57,3 +57,5 @@ Furthermore, 2-, and 3- vectors allow for special operations.
 - `Vector3<T>.rotateX(Vector3<T> other)`: Rotates a vector by another vector around the X axis
 - `Vector3<T>.rotateY(Vector3<T> other)`: Rotates a vector by another vector around the Y axis
 - `Vector3<T>.rotateZ(Vector3<T> other)`: Rotates a vector by another vector around the Z axis
+
+*Icon provided by [Freepik](https://www.flaticon.com/authors/freepik)*
