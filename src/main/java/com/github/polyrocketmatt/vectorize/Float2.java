@@ -2,6 +2,12 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Represents an immutable 2-dimensional vector of floats.
+ *
+ * @author Matthias Kovacic
+ * @since 1.0.0
+ */
 public record Float2(float x, float y) implements Vector2<Float> {
 
     @Override

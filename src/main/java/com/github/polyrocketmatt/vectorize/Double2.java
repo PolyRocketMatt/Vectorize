@@ -2,6 +2,12 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Represents an immutable 2-dimensional vector of doubles.
+ *
+ * @author Matthias Kovacic
+ * @since 1.0.0
+ */
 public record Double2(double x, double y) implements Vector2<Double> {
 
     @Override

@@ -2,6 +2,12 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Represents an immutable 3-dimensional vector of doubles.
+ *
+ * @author Matthias Kovacic
+ * @since 1.0.0
+ */
 public record Double3(double x, double y, double z) implements Vector3<Double> {
 
     @Override

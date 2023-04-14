@@ -2,7 +2,13 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
-public record Int4(int x, int y, int z, int w) implements Vector<Integer> {
+/**
+ * Represents an immutable 4-dimensional vector of integers.
+ *
+ * @author Matthias Kovacic
+ * @since 1.0.0
+ */
+public record Int4(int x, int y, int z, int w) implements Vector4<Integer> {
 
     @Override
     public @NotNull Int4 add(@NotNull Vector<Integer> other) {

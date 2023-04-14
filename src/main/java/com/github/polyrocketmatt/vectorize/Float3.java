@@ -2,6 +2,12 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Represents an immutable 3-dimensional vector of floats.
+ *
+ * @author Matthias Kovacic
+ * @since 1.0.0
+ */
 public record Float3(float x, float y, float z) implements Vector3<Float> {
 
     @Override

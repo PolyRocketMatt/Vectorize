@@ -2,7 +2,13 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
-public record Double4(double x, double y, double z, double w) implements Vector<Double> {
+/**
+ * Represents an immutable 4-dimensional vector of doubles.
+ *
+ * @author Matthias Kovacic
+ * @since 1.0.0
+ */
+public record Double4(double x, double y, double z, double w) implements Vector4<Double> {
 
     @Override
     public @NotNull Double4 add(@NotNull Vector<Double> other) {
