@@ -6,7 +6,7 @@
 
     <groupId>com.github.polyrocketmatt</groupId>
     <artifactId>vectorize</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -46,24 +46,5 @@
             <url>https://maven.pkg.github.com/PolyRocketMatt/vectorize</url>
         </repository>
     </distributionManagement>
-
-    <scm>
-        <connection>scm:git:${project.scm.url}</connection>
-        <developerConnection>scm:git:${project.scm.url}</developerConnection>
-        <url>https://github.com/PolyRocketMatt/Vectorize.git</url>
-        <tag>HEAD</tag>
-    </scm>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <scmCommentPrefix>[ci skip]</scmCommentPrefix>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
