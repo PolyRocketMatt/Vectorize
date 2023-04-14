@@ -8,6 +8,31 @@
 in integer, float and double precision. It offers basic vector operations such as
 addition, subtraction, multiplication and division, amongst other utility functions.
 
+## Installation
+
+To add Vectorize as a dependency to your project, add the following repository to your `pom.xml`:
+
+```xml
+<repositories>
+    <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/PolyRocketMatt/vectorize</url>
+    </repository>
+</repositories>
+```
+
+Then, add the following dependency:
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.github.polyrocketmatt</groupId>
+        <artifactId>vectorize</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
+```
+
 ## Types
 
 Vectorize offers the following types:
