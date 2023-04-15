@@ -32,7 +32,7 @@ Then, add the following dependency:
     <dependency>
         <groupId>com.github.polyrocketmatt</groupId>
         <artifactId>vectorize</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.3</version>
     </dependency>
 </dependencies>
 ```
