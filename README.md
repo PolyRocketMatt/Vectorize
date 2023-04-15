@@ -1,3 +1,7 @@
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/PolyRocketMatt/vectorize/deployment.yml?color=68AD63&style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-%2368AD63?style=for-the-badge)
+![Kotlin](https://img.shields.io/badge/Java-16-%233e7fa8?logo=java&style=for-the-badge)
+
 <p align="center">
     <img width="128" height="128" src="img/vectorize.png" />
 </p>
@@ -32,6 +36,10 @@ Then, add the following dependency:
     </dependency>
 </dependencies>
 ```
+
+## Documentation
+
+A JavaDoc is available [here](http://polyrocketmatt.me/Vectorize/)
 
 ## Types
 
