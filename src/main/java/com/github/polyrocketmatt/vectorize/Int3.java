@@ -218,6 +218,21 @@ public class Int3 extends Vector3<Integer> {
     }
 
     @Override
+    public @NotNull Int3 floor() {
+        return this;
+    }
+
+    @Override
+    public @NotNull Int3 ceil() {
+        return this;
+    }
+
+    @Override
+    public @NotNull Int3 fract() {
+        return this;
+    }
+
+    @Override
     public Int3 zyx() {
         return new Int3(this.z, this.y, this.x);
     }

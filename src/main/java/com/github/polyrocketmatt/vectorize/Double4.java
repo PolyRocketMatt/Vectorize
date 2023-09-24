@@ -196,6 +196,21 @@ public class Double4 extends Vector4<Double> {
         return new Double[] {this.x, this.y, this.z, this.w};
     }
 
+    @Override
+    public @NotNull Int4 floor() {
+        return new Int4((int) Math.floor(this.x), (int) Math.floor(this.y), (int) Math.floor(this.z), (int) Math.floor(this.w));
+    }
+
+    @Override
+    public @NotNull Int4 ceil() {
+        return new Int4((int) Math.ceil(this.x), (int) Math.ceil(this.y), (int) Math.ceil(this.z), (int) Math.ceil(this.w));
+    }
+
+    @Override
+    public @NotNull Double4 fract() {
+        return this.subtract(this.floor().toDouble());
+    }
+
     /**
      * Converts the vector to an {@link Int4}.
      *

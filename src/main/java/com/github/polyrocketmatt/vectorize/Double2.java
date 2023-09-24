@@ -183,6 +183,21 @@ public class Double2 extends Vector2<Double> {
         return new Double[] {this.x, this.y};
     }
 
+    @Override
+    public @NotNull Int2 floor() {
+        return new Int2((int) Math.floor(this.x), (int) Math.floor(this.y));
+    }
+
+    @Override
+    public @NotNull Int2 ceil() {
+        return new Int2((int) Math.ceil(this.x), (int) Math.ceil(this.y));
+    }
+
+    @Override
+    public @NotNull Double2 fract() {
+        return this.subtract(this.floor().toDouble());
+    }
+
     @SuppressWarnings("SuspiciousNameCombination")
     @Override
     public Double2 yx() {

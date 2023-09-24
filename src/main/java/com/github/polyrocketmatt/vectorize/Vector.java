@@ -176,4 +176,25 @@ public interface Vector<T> {
      */
     @NotNull T[] toArray();
 
+    /**
+     * Floor the components of this vector.
+     *
+     * @return A new vector with the floored components.
+     */
+    @NotNull Vector<Integer> floor();
+
+    /**
+     * Ceil the components of this vector.
+     *
+     * @return A new vector with the ceiled components.
+     */
+    @NotNull Vector<Integer> ceil();
+
+    /**
+     * Get the fractional part of the components of this vector.
+     *
+     * @return A new vector with the fractional components.
+     */
+    @NotNull Vector<T> fract();
+
 }

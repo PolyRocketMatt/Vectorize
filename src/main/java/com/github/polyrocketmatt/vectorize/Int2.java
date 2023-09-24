@@ -183,6 +183,21 @@ public class Int2 extends Vector2<Integer> {
         return new Integer[] {this.x, this.y};
     }
 
+    @Override
+    public @NotNull Int2 floor() {
+        return this;
+    }
+
+    @Override
+    public @NotNull Int2 ceil() {
+        return this;
+    }
+
+    @Override
+    public @NotNull Int2 fract() {
+        return this;
+    }
+
     @SuppressWarnings("SuspiciousNameCombination")
     @Override
     public Int2 yx() {

@@ -202,6 +202,21 @@ public class Float4 extends Vector4<Float> {
         return new Float[] {this.x, this.y, this.z, this.w};
     }
 
+    @Override
+    public @NotNull Int4 floor() {
+        return new Int4((int) Math.floor(this.x), (int) Math.floor(this.y), (int) Math.floor(this.z), (int) Math.floor(this.w));
+    }
+
+    @Override
+    public @NotNull Int4 ceil() {
+        return new Int4((int) Math.ceil(this.x), (int) Math.ceil(this.y), (int) Math.ceil(this.z), (int) Math.ceil(this.w));
+    }
+
+    @Override
+    public @NotNull Float4 fract() {
+        return this.subtract(this.floor().toFloat());
+    }
+
     /**
      * Converts the vector to a {@link Double4}.
      *

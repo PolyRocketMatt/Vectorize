@@ -217,6 +217,21 @@ public class Float3 extends Vector3<Float> {
     }
 
     @Override
+    public @NotNull Int3 floor() {
+        return new Int3((int) Math.floor(this.x), (int) Math.floor(this.y), (int) Math.floor(this.z));
+    }
+
+    @Override
+    public @NotNull Int3 ceil() {
+        return new Int3((int) Math.ceil(this.x), (int) Math.ceil(this.y), (int) Math.ceil(this.z));
+    }
+
+    @Override
+    public @NotNull Float3 fract() {
+        return this.subtract(this.floor().toFloat());
+    }
+
+    @Override
     public Float3 zyx() {
         return new Float3(this.z, this.y, this.x);
     }

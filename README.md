@@ -32,10 +32,12 @@ Then, add the following dependency:
     <dependency>
         <groupId>com.github.polyrocketmatt</groupId>
         <artifactId>vectorize</artifactId>
-        <version>1.0.3</version>
+        <version>2.0.X</version>
     </dependency>
 </dependencies>
 ```
+
+Currently, the latest version is `2.0.1`.
 
 ## Documentation
 
@@ -72,6 +74,9 @@ The following utility methods are available:
 - `Vector<T>.lengthSquared()`: Returns the squared length of a vector
 - `Vector<T>.distance(Vector<T> other)`: Returns the distance between two vectors
 - `Vector<T>.distanceSquared(Vector<T> other)`: Returns the squared distance between two vectors
+- `Vector<T>.floor()`: Returns the floor of a vector
+- `Vector<T>.ceil()` Returns the ceil of a vector
+- `Vector<T>.fract()` Returns the fractional part of a vector
 
 Conversion methods are available to convert between different vector types and arrays.
 Furthermore, 2-, and 3- vectors allow for special operations.
@@ -81,6 +86,7 @@ Furthermore, 2-, and 3- vectors allow for special operations.
 2D vectors allow for the following special operations:
 
 - `Vector2<T>.rotate(Vector2<T> other)`: Rotates a vector by another vector
+- `Vector2<T>.yx()`: Returns a vector with the X and Y components swapped
 
 ### 3D Vectors
 
@@ -90,5 +96,18 @@ Furthermore, 2-, and 3- vectors allow for special operations.
 - `Vector3<T>.rotateX(Vector3<T> other)`: Rotates a vector by another vector around the X axis
 - `Vector3<T>.rotateY(Vector3<T> other)`: Rotates a vector by another vector around the Y axis
 - `Vector3<T>.rotateZ(Vector3<T> other)`: Rotates a vector by another vector around the Z axis
+- `Vector3<T>.zyx()`: Returns a vector with the X, Y and Z components swapped
+
+## Changelog
+
+### 2.0.1
+- `Swizzle2<T>` and `Swizzle3<T>` are now functional interfaces
+- `Vector<T>.floor()` was added
+- `Vector<T>.ceil()` was added
+- `Vector<T>.fract()` was added
+
+### 2.0.0
+- Minor improvements to the structure of the library
+---
 
 *Icon provided by [Freepik](https://www.flaticon.com/authors/freepik)*
