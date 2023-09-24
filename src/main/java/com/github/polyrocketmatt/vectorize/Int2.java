@@ -46,6 +46,28 @@ public class Int2 extends Vector2<Integer> {
     }
 
     @Override
+    public Int2 add(Integer x, Integer y) {
+        return new Int2(this.x + x, this.y + y);
+    }
+
+    @Override
+    public Int2 subtract(Integer x, Integer y) {
+        return new Int2(this.x - x, this.y - y);
+    }
+
+    @Override
+    public Int2 multiply(Integer x, Integer y) {
+        return new Int2(this.x * x, this.y * y);
+    }
+
+    @Override
+    public Int2 divide(Integer x, Integer y) {
+        if (x == 0 || y == 0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %d, y: %d)".formatted(x, y));
+        return new Int2(this.x / x, this.y / y);
+    }
+
+    @Override
     public @NotNull Int2 add(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int2 vector))
             throw new IllegalArgumentException("'other' must be a Int2, found %s".formatted(other.getClass().getName()));

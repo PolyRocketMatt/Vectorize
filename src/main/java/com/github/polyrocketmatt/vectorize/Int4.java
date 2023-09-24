@@ -60,6 +60,28 @@ public class Int4 extends Vector4<Integer> {
     }
 
     @Override
+    public Int4 add(Integer x, Integer y, Integer z, Integer w) {
+        return new Int4(this.x + x, this.y + y, this.z + z, this.w + w);
+    }
+
+    @Override
+    public Int4 subtract(Integer x, Integer y, Integer z, Integer w) {
+        return new Int4(this.x - x, this.y - y, this.z - z, this.w - w);
+    }
+
+    @Override
+    public Int4 multiply(Integer x, Integer y, Integer z, Integer w) {
+        return new Int4(this.x * x, this.y * y, this.z * z, this.w * w);
+    }
+
+    @Override
+    public Int4 divide(Integer x, Integer y, Integer z, Integer w) {
+        if (x == 0 || y == 0 || z == 0 || w == 0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %d, y: %d, z: %d, w: %d)".formatted(x, y, z, w));
+        return new Int4(this.x / x, this.y / y, this.z / z, this.w / w);
+    }
+
+    @Override
     public @NotNull Int4 add(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int4 vector))
             throw new IllegalArgumentException("'other' must be a Int4, found %s".formatted(other.getClass().getName()));

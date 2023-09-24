@@ -46,6 +46,28 @@ public class Double2 extends Vector2<Double> {
     }
 
     @Override
+    public Double2 add(Double x, Double y) {
+        return new Double2(this.x + x, this.y + y);
+    }
+
+    @Override
+    public Double2 subtract(Double x, Double y) {
+        return new Double2(this.x - x, this.y - y);
+    }
+
+    @Override
+    public Double2 multiply(Double x, Double y) {
+        return new Double2(this.x * x, this.y * y);
+    }
+
+    @Override
+    public Double2 divide(Double x, Double y) {
+        if (x == 0.0 || y == 0.0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f)".formatted(x, y));
+        return new Double2(this.x / x, this.y / y);
+    }
+
+    @Override
     public @NotNull Double2 add(@NotNull Vector<Double> other) {
         if (!(other instanceof Double2 vector))
             throw new IllegalArgumentException("'other' must be a Double2, found %s".formatted(other.getClass().getName()));

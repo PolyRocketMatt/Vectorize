@@ -46,6 +46,28 @@ public class Float2 extends Vector2<Float> {
     }
 
     @Override
+    public Float2 add(Float x, Float y) {
+        return new Float2(this.x + x, this.y + y);
+    }
+
+    @Override
+    public Float2 subtract(Float x, Float y) {
+        return new Float2(this.x - x, this.y - y);
+    }
+
+    @Override
+    public Float2 multiply(Float x, Float y) {
+        return new Float2(this.x * x, this.y * y);
+    }
+
+    @Override
+    public Float2 divide(Float x, Float y) {
+        if (x == 0.0f || y == 0.0f)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f)".formatted(x, y));
+        return new Float2(this.x / x, this.y / y);
+    }
+
+    @Override
     public @NotNull Float2 add(@NotNull Vector<Float> other) {
         if (!(other instanceof Float2 vector))
             throw new IllegalArgumentException("'other' must be a Float2, found %s".formatted(other.getClass().getName()));

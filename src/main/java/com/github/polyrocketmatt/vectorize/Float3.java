@@ -53,6 +53,28 @@ public class Float3 extends Vector3<Float> {
     }
 
     @Override
+    public Float3 add(Float x, Float y, Float z) {
+        return new Float3(this.x + x, this.y + y, this.z + z);
+    }
+
+    @Override
+    public Float3 subtract(Float x, Float y, Float z) {
+        return new Float3(this.x - x, this.y - y, this.z - z);
+    }
+
+    @Override
+    public Float3 multiply(Float x, Float y, Float z) {
+        return new Float3(this.x * x, this.y * y, this.z * z);
+    }
+
+    @Override
+    public Float3 divide(Float x, Float y, Float z) {
+        if (x == 0.0f || y == 0.0f || z == 0.0f)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f, z: %f)".formatted(x, y, z));
+        return new Float3(this.x / x, this.y / y, this.z / z);
+    }
+
+    @Override
     public @NotNull Float3 add(@NotNull Vector<Float> other) {
         if (!(other instanceof Float3 vector))
             throw new IllegalArgumentException("'other' must be a Float3, found %s".formatted(other.getClass().getName()));
