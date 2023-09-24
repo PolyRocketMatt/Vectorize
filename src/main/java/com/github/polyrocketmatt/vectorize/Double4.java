@@ -10,10 +10,10 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Double4 extends Vector4<Double> {
 
-    protected final double x;
-    protected final double y;
-    protected final double z;
-    protected final double w;
+    public final double x;
+    public final double y;
+    public final double z;
+    public final double w;
 
     public static final Double4 ZERO = new Double4(0.0, 0.0, 0.0, 0.0);
     public static final Double4 ONE = new Double4(1.0, 1.0, 1.0, 1.0);

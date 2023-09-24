@@ -10,9 +10,9 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Int3 extends Vector3<Integer> {
 
-    protected final int x;
-    protected final int y;
-    protected final int z;
+    public final int x;
+    public final int y;
+    public final int z;
 
     public static final Int3 ZERO = new Int3(0, 0, 0);
     public static final Int3 ONE = new Int3(1, 1, 1);

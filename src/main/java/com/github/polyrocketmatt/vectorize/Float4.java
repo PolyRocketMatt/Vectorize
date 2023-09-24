@@ -10,10 +10,10 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Float4 extends Vector4<Float> {
 
-    protected final float x;
-    protected final float y;
-    protected final float z;
-    protected final float w;
+    public final float x;
+    public final float y;
+    public final float z;
+    public final float w;
 
     public static final Float4 ZERO = new Float4(0.0f, 0.0f, 0.0f, 0.0f);
     public static final Float4 ONE = new Float4(1.0f, 1.0f, 1.0f, 1.0f);

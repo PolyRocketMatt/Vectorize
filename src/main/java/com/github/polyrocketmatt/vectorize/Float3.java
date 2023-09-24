@@ -10,9 +10,9 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Float3 extends Vector3<Float> {
 
-    protected final float x;
-    protected final float y;
-    protected final float z;
+    public final float x;
+    public final float y;
+    public final float z;
 
     public static final Float3 ZERO = new Float3(0.0f, 0.0f, 0.0f);
     public static final Float3 ONE = new Float3(1.0f, 1.0f, 1.0f);

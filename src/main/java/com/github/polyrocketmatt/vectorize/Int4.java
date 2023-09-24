@@ -10,10 +10,10 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Int4 extends Vector4<Integer> {
 
-    protected final int x;
-    protected final int y;
-    protected final int z;
-    protected final int w;
+    public final int x;
+    public final int y;
+    public final int z;
+    public final int w;
 
     public static final Int4 ZERO = new Int4(0, 0, 0, 0);
     public static final Int4 ONE = new Int4(1, 1, 1, 1);

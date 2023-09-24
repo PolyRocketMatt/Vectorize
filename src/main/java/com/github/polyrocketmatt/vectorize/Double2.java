@@ -10,8 +10,8 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Double2 extends Vector2<Double> {
 
-    protected final double x;
-    protected final double y;
+    public final double x;
+    public final double y;
 
     public static final Double2 ZERO = new Double2(0.0, 0.0);
     public static final Double2 ONE = new Double2(1.0, 1.0);

@@ -10,8 +10,8 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Int2 extends Vector2<Integer> {
 
-    protected final int x;
-    protected final int y;
+    public final int x;
+    public final int y;
 
     public static final Int2 ZERO = new Int2(0, 0);
     public static final Int2 ONE = new Int2(1, 1);
