@@ -10,9 +10,9 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Double3 extends Vector3<Double> {
 
-    protected final double x;
-    protected final double y;
-    protected final double z;
+    public final double x;
+    public final double y;
+    public final double z;
 
     public static final Double3 ZERO = new Double3(0.0, 0.0, 0.0);
     public static final Double3 ONE = new Double3(1.0, 1.0, 1.0);
@@ -35,9 +35,9 @@ public class Double3 extends Vector3<Double> {
     }
 
     public Double3(Int3 vector) {
-        this.x = (double) vector.x;
-        this.y = (double) vector.y;
-        this.z = (double) vector.z;
+        this.x = vector.x;
+        this.y = vector.y;
+        this.z = vector.z;
     }
 
     public Double3(Float3 vector) {

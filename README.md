@@ -100,6 +100,9 @@ Furthermore, 2-, and 3- vectors allow for special operations.
 
 ## Changelog
 
+### 2.0.2
+- Vector components are now `public`
+
 ### 2.0.1
 - `Swizzle2<T>` and `Swizzle3<T>` are now functional interfaces
 - `Vector<T>.floor()` was added
