@@ -39,10 +39,10 @@ public class Double4 extends Vector4<Double> {
     }
 
     public Double4(Int4 vector) {
-        this.x = (double) vector.x;
-        this.y = (double) vector.y;
-        this.z = (double) vector.z;
-        this.w = (double) vector.w;
+        this.x = vector.x;
+        this.y = vector.y;
+        this.z = vector.z;
+        this.w = vector.w;
     }
 
     public Double4(Float4 vector) {
@@ -57,6 +57,28 @@ public class Double4 extends Vector4<Double> {
         this.y = scalar;
         this.z = scalar;
         this.w = scalar;
+    }
+
+    @Override
+    public Double4 add(Double x, Double y, Double z, Double w) {
+        return new Double4(this.x + x, this.y + y, this.z + z, this.w + w);
+    }
+
+    @Override
+    public Double4 subtract(Double x, Double y, Double z, Double w) {
+        return new Double4(this.x - x, this.y - y, this.z - z, this.w - w);
+    }
+
+    @Override
+    public Double4 multiply(Double x, Double y, Double z, Double w) {
+        return new Double4(this.x * x, this.y * y, this.z * z, this.w * w);
+    }
+
+    @Override
+    public Double4 divide(Double x, Double y, Double z, Double w) {
+        if (x == 0.0 || y == 0.0 || z == 0.0 || w == 0.0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f, z: %f, w: %f)".formatted(x, y, z, w));
+        return new Double4(this.x / x, this.y / y, this.z / z, this.w / w);
     }
 
     @Override

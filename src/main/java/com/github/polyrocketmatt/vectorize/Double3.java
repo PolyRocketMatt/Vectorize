@@ -53,6 +53,28 @@ public class Double3 extends Vector3<Double> {
     }
 
     @Override
+    public Double3 add(Double x, Double y, Double z) {
+        return new Double3(this.x + x, this.y + y, this.z + z);
+    }
+
+    @Override
+    public Double3 subtract(Double x, Double y, Double z) {
+        return new Double3(this.x - x, this.y - y, this.z - z);
+    }
+
+    @Override
+    public Double3 multiply(Double x, Double y, Double z) {
+        return new Double3(this.x * x, this.y * y, this.z * z);
+    }
+
+    @Override
+    public Double3 divide(Double x, Double y, Double z) {
+        if (x == 0.0 || y == 0.0 || z == 0.0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f, z: %f)".formatted(x, y, z));
+        return new Double3(this.x / x, this.y / y, this.z / z);
+    }
+
+    @Override
     public @NotNull Double3 add(@NotNull Vector<Double> other) {
         if (!(other instanceof Double3 vector))
             throw new IllegalArgumentException("'other' must be a Double3, found %s".formatted(other.getClass().getName()));

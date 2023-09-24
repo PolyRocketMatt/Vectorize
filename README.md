@@ -37,7 +37,7 @@ Then, add the following dependency:
 </dependencies>
 ```
 
-Currently, the latest version is `2.0.1`.
+Currently, the latest version is `2.0.2`.
 
 ## Documentation
 
@@ -99,6 +99,20 @@ Furthermore, 2-, and 3- vectors allow for special operations.
 - `Vector3<T>.zyx()`: Returns a vector with the X, Y and Z components swapped
 
 ## Changelog
+
+### 2.0.3
+- `Vector2<T>.add(T x, T y)` was added
+- `Vector3<T>.add(T x, T y, T z)` was added
+- `Vector4<T>.add(T x, T y, T z, T w)` was added
+- `Vector2<T>.subtract(T x, T y)` was added
+- `Vector3<T>.subtract(T x, T y, T z)` was added
+- `Vector4<T>.subtract(T x, T y, T z, T w)` was added
+- `Vector2<T>.multiply(T x, T y)` was added
+- `Vector3<T>.multiply(T x, T y, T z)` was added
+- `Vector4<T>.multiply(T x, T y, T z, T w)` was added
+- `Vector2<T>.divide(T x, T y)` was added
+- `Vector3<T>.divide(T x, T y, T z)` was added
+- `Vector4<T>.divide(T x, T y, T z, T w)` was added
 
 ### 2.0.2
 - Vector components are now `public`

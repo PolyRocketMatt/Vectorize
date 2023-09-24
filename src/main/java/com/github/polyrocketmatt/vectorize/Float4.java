@@ -60,6 +60,28 @@ public class Float4 extends Vector4<Float> {
     }
 
     @Override
+    public Float4 add(Float x, Float y, Float z, Float w) {
+        return new Float4(this.x + x, this.y + y, this.z + z, this.w + w);
+    }
+
+    @Override
+    public Float4 subtract(Float x, Float y, Float z, Float w) {
+        return new Float4(this.x - x, this.y - y, this.z - z, this.w - w);
+    }
+
+    @Override
+    public Float4 multiply(Float x, Float y, Float z, Float w) {
+        return new Float4(this.x * x, this.y * y, this.z * z, this.w * w);
+    }
+
+    @Override
+    public Float4 divide(Float x, Float y, Float z, Float w) {
+        if (x == 0.0f || y == 0.0f || z == 0.0f || w == 0.0f)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f, z: %f, w: %f)".formatted(x, y, z, w));
+        return new Float4(this.x / x, this.y / y, this.z / z, this.w / w);
+    }
+
+    @Override
     public @NotNull Float4 add(@NotNull Vector<Float> other) {
         if (!(other instanceof Float4 vector))
             throw new IllegalArgumentException("'other' must be a Float4, found %s".formatted(other.getClass().getName()));

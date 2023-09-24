@@ -53,6 +53,28 @@ public class Int3 extends Vector3<Integer> {
     }
 
     @Override
+    public Int3 add(Integer x, Integer y, Integer z) {
+        return new Int3(this.x + x, this.y + y, this.z + z);
+    }
+
+    @Override
+    public Int3 subtract(Integer x, Integer y, Integer z) {
+        return new Int3(this.x - x, this.y - y, this.z - z);
+    }
+
+    @Override
+    public Int3 multiply(Integer x, Integer y, Integer z) {
+        return new Int3(this.x * x, this.y * y, this.z * z);
+    }
+
+    @Override
+    public Int3 divide(Integer x, Integer y, Integer z) {
+        if (x == 0 || y == 0 || z == 0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %d, y: %d, z: %d)".formatted(x, y, z));
+        return new Int3(this.x / x, this.y / y, this.z / z);
+    }
+
+    @Override
     public @NotNull Int3 add(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int3 vector))
             throw new IllegalArgumentException("'other' must be a Int3, found %s".formatted(other.getClass().getName()));
