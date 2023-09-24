@@ -37,7 +37,7 @@ Then, add the following dependency:
 </dependencies>
 ```
 
-Currently, the latest version is `2.0.2`.
+Currently, the latest version is `2.0.3`.
 
 ## Documentation
 
