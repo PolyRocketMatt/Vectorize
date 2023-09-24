@@ -8,43 +8,78 @@ import org.jetbrains.annotations.NotNull;
  * @author Matthias Kovacic
  * @since 1.0.0
  */
-public record Double2(double x, double y) implements Vector2<Double> {
+public class Double2 extends Vector2<Double> {
+
+    protected final double x;
+    protected final double y;
+
+    public static final Double2 ZERO = new Double2(0.0, 0.0);
+    public static final Double2 ONE = new Double2(1.0, 1.0);
+    public static final Double2 UNIT_X = new Double2(1.0, 0.0);
+    public static final Double2 UNIT_Y = new Double2(0.0, 1.0);
+
+    public Double2(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Double2(@NotNull Double[] array) {
+        if (array.length != 2)
+            throw new IllegalArgumentException("'array' must have a length of 2, found %d".formatted(array.length));
+        this.x = array[0];
+        this.y = array[1];
+    }
+
+    public Double2(Int2 vector) {
+        this.x = vector.x;
+        this.y = vector.y;
+    }
+
+    public Double2(Float2 vector) {
+        this.x = vector.x;
+        this.y = vector.y;
+    }
+
+    public Double2(double scalar) {
+        this.x = scalar;
+        this.y = scalar;
+    }
 
     @Override
     public @NotNull Double2 add(@NotNull Vector<Double> other) {
         if (!(other instanceof Double2 vector))
             throw new IllegalArgumentException("'other' must be a Double2, found %s".formatted(other.getClass().getName()));
-        return new Double2(this.x + vector.x(), this.y + vector.y());
+        return new Double2(this.x + vector.x, this.y + vector.y);
     }
 
     @Override
     public @NotNull Double2 subtract(@NotNull Vector<Double> other) {
         if (!(other instanceof Double2 vector))
             throw new IllegalArgumentException("'other' must be a Double2, found %s".formatted(other.getClass().getName()));
-        return new Double2(this.x - vector.x(), this.y - vector.y());
+        return new Double2(this.x - vector.x, this.y - vector.y);
     }
 
     @Override
     public @NotNull Double2 multiply(@NotNull Vector<Double> other) {
         if (!(other instanceof Double2 vector))
             throw new IllegalArgumentException("'other' must be a Double2, found %s".formatted(other.getClass().getName()));
-        return new Double2(this.x * vector.x(), this.y * vector.y());
+        return new Double2(this.x * vector.x, this.y * vector.y);
     }
 
     @Override
     public @NotNull Double2 divide(@NotNull Vector<Double> other) {
         if (!(other instanceof Double2 vector))
             throw new IllegalArgumentException("'other' must be a Double2, found %s".formatted(other.getClass().getName()));
-        if (vector.x() == 0.0 || vector.y() == 0.0)
-            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f)".formatted(vector.x(), vector.y()));
-        return new Double2(this.x / vector.x(), this.y / vector.y());
+        if (vector.x == 0.0 || vector.y == 0.0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f)".formatted(vector.x, vector.y));
+        return new Double2(this.x / vector.x, this.y / vector.y);
     }
 
     @Override
     public @NotNull Double2 pow(@NotNull Vector<Double> other) throws IllegalArgumentException {
         if (!(other instanceof Double2 vector))
             throw new IllegalArgumentException("'other' must be a Double2, found %s".formatted(other.getClass().getName()));
-        return new Double2(Math.pow(this.x, vector.x()), Math.pow(this.y, vector.y()));
+        return new Double2(Math.pow(this.x, vector.x), Math.pow(this.y, vector.y));
     }
 
     @Override
@@ -96,7 +131,7 @@ public record Double2(double x, double y) implements Vector2<Double> {
     public @NotNull Double dot(@NotNull Vector<Double> other) {
         if (!(other instanceof Double2 vector))
             throw new IllegalArgumentException("'other' must be a Double2, found %s".formatted(other.getClass().getName()));
-        return x * vector.x() + y * vector.y();
+        return x * vector.x + y * vector.y;
     }
 
     @Override
@@ -104,7 +139,7 @@ public record Double2(double x, double y) implements Vector2<Double> {
         if (!(other instanceof Double2 vector))
             throw new IllegalArgumentException("'other' must be a Double2, found %s".formatted(other.getClass().getName()));
         double dot = this.dot(vector);
-        double det = this.x * vector.y() - this.y * vector.x();
+        double det = this.x * vector.y - this.y * vector.x;
         return Math.atan2(det, dot);
     }
 
@@ -122,8 +157,8 @@ public record Double2(double x, double y) implements Vector2<Double> {
     public @NotNull Double distance(@NotNull Vector<Double> other) {
         if (!(other instanceof Double2 vector))
             throw new IllegalArgumentException("'other' must be a Double2, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
         return Math.sqrt(dx * dx + dy * dy);
     }
 
@@ -131,8 +166,8 @@ public record Double2(double x, double y) implements Vector2<Double> {
     public @NotNull Double distanceSquared(@NotNull Vector<Double> other) {
         if (!(other instanceof Double2 vector))
             throw new IllegalArgumentException("'other' must be a Double2, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
         return (dx * dx + dy * dy);
     }
 
@@ -146,6 +181,12 @@ public record Double2(double x, double y) implements Vector2<Double> {
     @Override
     public @NotNull Double[] toArray() {
         return new Double[] {this.x, this.y};
+    }
+
+    @SuppressWarnings("SuspiciousNameCombination")
+    @Override
+    public Double2 yx() {
+        return new Double2(this.y, this.x);
     }
 
     /**

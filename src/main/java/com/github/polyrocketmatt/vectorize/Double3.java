@@ -8,43 +8,85 @@ import org.jetbrains.annotations.NotNull;
  * @author Matthias Kovacic
  * @since 1.0.0
  */
-public record Double3(double x, double y, double z) implements Vector3<Double> {
+public class Double3 extends Vector3<Double> {
+
+    protected final double x;
+    protected final double y;
+    protected final double z;
+
+    public static final Double3 ZERO = new Double3(0.0, 0.0, 0.0);
+    public static final Double3 ONE = new Double3(1.0, 1.0, 1.0);
+    public static final Double3 UNIT_X = new Double3(1.0, 0.0, 0.0);
+    public static final Double3 UNIT_Y = new Double3(0.0, 1.0, 0.0);
+    public static final Double3 UNIT_Z = new Double3(0.0, 0.0, 1.0);
+
+    public Double3(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public Double3(@NotNull Double[] array) {
+        if (array.length != 3)
+            throw new IllegalArgumentException("'array' must have a length of 3, found %d".formatted(array.length));
+        this.x = array[0];
+        this.y = array[1];
+        this.z = array[2];
+    }
+
+    public Double3(Int3 vector) {
+        this.x = (double) vector.x;
+        this.y = (double) vector.y;
+        this.z = (double) vector.z;
+    }
+
+    public Double3(Float3 vector) {
+        this.x = vector.x;
+        this.y = vector.y;
+        this.z = vector.z;
+    }
+
+    public Double3(double scalar) {
+        this.x = scalar;
+        this.y = scalar;
+        this.z = scalar;
+    }
 
     @Override
     public @NotNull Double3 add(@NotNull Vector<Double> other) {
         if (!(other instanceof Double3 vector))
             throw new IllegalArgumentException("'other' must be a Double3, found %s".formatted(other.getClass().getName()));
-        return new Double3(this.x + vector.x(), this.y + vector.y(), this.z + vector.z());
+        return new Double3(this.x + vector.x, this.y + vector.y, this.z + vector.z);
     }
 
     @Override
     public @NotNull Double3 subtract(@NotNull Vector<Double> other) {
         if (!(other instanceof Double3 vector))
             throw new IllegalArgumentException("'other' must be a Double3, found %s".formatted(other.getClass().getName()));
-        return new Double3(this.x - vector.x(), this.y - vector.y(), this.z - vector.z());
+        return new Double3(this.x - vector.x, this.y - vector.y, this.z - vector.z);
     }
 
     @Override
     public @NotNull Double3 multiply(@NotNull Vector<Double> other) {
         if (!(other instanceof Double3 vector))
             throw new IllegalArgumentException("'other' must be a Double3, found %s".formatted(other.getClass().getName()));
-        return new Double3(this.x * vector.x(), this.y * vector.y(), this.z * vector.z());
+        return new Double3(this.x * vector.x, this.y * vector.y, this.z * vector.z);
     }
 
     @Override
     public @NotNull Double3 divide(@NotNull Vector<Double> other) {
         if (!(other instanceof Double3 vector))
             throw new IllegalArgumentException("'other' must be a Double3, found %s".formatted(other.getClass().getName()));
-        if (vector.x() == 0.0 || vector.y() == 0.0 || vector.z() == 0.0)
-            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f, z: %f)".formatted(vector.x(), vector.y(), vector.z()));
-        return new Double3(this.x / vector.x(), this.y / vector.y(), this.z / vector.z());
+        if (vector.x == 0.0 || vector.y == 0.0 || vector.z == 0.0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f, z: %f)".formatted(vector.x, vector.y, vector.z));
+        return new Double3(this.x / vector.x, this.y / vector.y, this.z / vector.z);
     }
 
     @Override
     public @NotNull Double3 pow(@NotNull Vector<Double> other) throws IllegalArgumentException {
         if (!(other instanceof Double3 vector))
             throw new IllegalArgumentException("'other' must be a Double3, found %s".formatted(other.getClass().getName()));
-        return new Double3(Math.pow(this.x, vector.x()), Math.pow(this.y, vector.y()), Math.pow(this.z, vector.z()));
+        return new Double3(Math.pow(this.x, vector.x), Math.pow(this.y, vector.y), Math.pow(this.z, vector.z));
     }
 
     @Override
@@ -96,7 +138,7 @@ public record Double3(double x, double y, double z) implements Vector3<Double> {
     public @NotNull Double dot(@NotNull Vector<Double> other) {
         if (!(other instanceof Double3 vector))
             throw new IllegalArgumentException("'other' must be a Double3, found %s".formatted(other.getClass().getName()));
-        return x * vector.x() + y * vector.y() + z * vector.z();
+        return x * vector.x + y * vector.y + z * vector.z;
     }
 
     @Override
@@ -113,9 +155,9 @@ public record Double3(double x, double y, double z) implements Vector3<Double> {
         if (!(other instanceof Double3 vector))
             throw new IllegalArgumentException("'other' must be a Double3, found %s".formatted(other.getClass().getName()));
         return new Double3(
-                this.y * vector.z() - this.z * vector.y(),
-                this.z * vector.x() - this.x * vector.z(),
-                this.x * vector.y() - this.y * vector.x()
+                this.y * vector.z - this.z * vector.y,
+                this.z * vector.x - this.x * vector.z,
+                this.x * vector.y - this.y * vector.x
         );
     }
 
@@ -133,9 +175,9 @@ public record Double3(double x, double y, double z) implements Vector3<Double> {
     public @NotNull Double distance(@NotNull Vector<Double> other) {
         if (!(other instanceof Double3 vector))
             throw new IllegalArgumentException("'other' must be a Double3, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
-        double dz = this.z - vector.z();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
+        double dz = this.z - vector.z;
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
@@ -143,9 +185,9 @@ public record Double3(double x, double y, double z) implements Vector3<Double> {
     public @NotNull Double distanceSquared(@NotNull Vector<Double> other) {
         if (!(other instanceof Double3 vector))
             throw new IllegalArgumentException("'other' must be a Double3, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
-        double dz = this.z - vector.z();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
+        double dz = this.z - vector.z;
         return (dx * dx + dy * dy + dz * dz);
     }
 
@@ -173,6 +215,11 @@ public record Double3(double x, double y, double z) implements Vector3<Double> {
     @Override
     public @NotNull Double[] toArray() {
         return new Double[] {this.x, this.y, this.z};
+    }
+
+    @Override
+    public Double3 zyx() {
+        return new Double3(this.z, this.y, this.x);
     }
 
     /**

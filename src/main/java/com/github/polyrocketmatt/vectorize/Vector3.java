@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Matthias Kovacic
  * @since 1.0.0
  */
-public interface Vector3<T> extends Vector<T> {
+public abstract class Vector3<T> implements Vector<T>, Swizzle3<T> {
 
     /**
      * Calculate the cross product of this vector and another vector.
@@ -18,7 +18,7 @@ public interface Vector3<T> extends Vector<T> {
      * @throws IllegalArgumentException If the vectors are not of the same arity.
      * @return A new vector representing the cross product of this vector and the other vector.
      */
-    @NotNull Vector<T> cross(@NotNull Vector<T> other);
+    public abstract @NotNull Vector<T> cross(@NotNull Vector<T> other);
 
     /**
      * Rotates the vector by the given angle in radians around the X axis.
@@ -26,7 +26,7 @@ public interface Vector3<T> extends Vector<T> {
      * @param angle The angle in radians.
      * @return A new vector rotated by the given angle.
      */
-    @NotNull Double3 rotateX(double angle);
+    public abstract @NotNull Double3 rotateX(double angle);
 
     /**
      * Rotates the vector by the given angle in radians around the Y axis.
@@ -34,7 +34,7 @@ public interface Vector3<T> extends Vector<T> {
      * @param angle The angle in radians.
      * @return A new vector rotated by the given angle.
      */
-    @NotNull Double3 rotateY(double angle);
+    public abstract @NotNull Double3 rotateY(double angle);
 
     /**
      * Rotates the vector by the given angle in radians around the Z axis.
@@ -42,6 +42,6 @@ public interface Vector3<T> extends Vector<T> {
      * @param angle The angle in radians.
      * @return A new vector rotated by the given angle.
      */
-    @NotNull Double3 rotateZ(double angle);
+    public abstract @NotNull Double3 rotateZ(double angle);
 
 }

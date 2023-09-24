@@ -8,43 +8,78 @@ import org.jetbrains.annotations.NotNull;
  * @author Matthias Kovacic
  * @since 1.0.0
  */
-public record Float2(float x, float y) implements Vector2<Float> {
+public class Float2 extends Vector2<Float> {
+
+    protected final float x;
+    protected final float y;
+
+    public static final Float2 ZERO = new Float2(0.0f, 0.0f);
+    public static final Float2 ONE = new Float2(1.0f, 1.0f);
+    public static final Float2 UNIT_X = new Float2(1.0f, 0.0f);
+    public static final Float2 UNIT_Y = new Float2(0.0f, 1.0f);
+
+    public Float2(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Float2(@NotNull Float[] array) {
+        if (array.length != 2)
+            throw new IllegalArgumentException("'array' must have a length of 2, found %d".formatted(array.length));
+        this.x = array[0];
+        this.y = array[1];
+    }
+
+    public Float2(Int2 vector) {
+        this.x = vector.x;
+        this.y = vector.y;
+    }
+
+    public Float2(Double2 vector) {
+        this.x = (float) vector.x;
+        this.y = (float) vector.y;
+    }
+
+    public Float2(float scalar) {
+        this.x = scalar;
+        this.y = scalar;
+    }
 
     @Override
     public @NotNull Float2 add(@NotNull Vector<Float> other) {
         if (!(other instanceof Float2 vector))
             throw new IllegalArgumentException("'other' must be a Float2, found %s".formatted(other.getClass().getName()));
-        return new Float2(this.x + vector.x(), this.y + vector.y());
+        return new Float2(this.x + vector.x, this.y + vector.y);
     }
 
     @Override
     public @NotNull Float2 subtract(@NotNull Vector<Float> other) {
         if (!(other instanceof Float2 vector))
             throw new IllegalArgumentException("'other' must be a Float2, found %s".formatted(other.getClass().getName()));
-        return new Float2(this.x - vector.x(), this.y - vector.y());
+        return new Float2(this.x - vector.x, this.y - vector.y);
     }
 
     @Override
     public @NotNull Float2 multiply(@NotNull Vector<Float> other) {
         if (!(other instanceof Float2 vector))
             throw new IllegalArgumentException("'other' must be a Float2, found %s".formatted(other.getClass().getName()));
-        return new Float2(this.x * vector.x(), this.y * vector.y());
+        return new Float2(this.x * vector.x, this.y * vector.y);
     }
 
     @Override
     public @NotNull Float2 divide(@NotNull Vector<Float> other) {
         if (!(other instanceof Float2 vector))
             throw new IllegalArgumentException("'other' must be a Float2, found %s".formatted(other.getClass().getName()));
-        if (vector.x() == 0.0f || vector.y() == 0.0f)
-            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f)".formatted(vector.x(), vector.y()));
-        return new Float2(this.x / vector.x(), this.y / vector.y());
+        if (vector.x == 0.0f || vector.y == 0.0f)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f)".formatted(vector.x, vector.y));
+        return new Float2(this.x / vector.x, this.y / vector.y);
     }
 
     @Override
     public @NotNull Float2 pow(@NotNull Vector<Float> other) throws IllegalArgumentException {
         if (!(other instanceof Float2 vector))
             throw new IllegalArgumentException("'other' must be a Float2, found %s".formatted(other.getClass().getName()));
-        return new Float2((float) Math.pow(this.x, vector.x()), (float) Math.pow(this.y, vector.y()));
+        return new Float2((float) Math.pow(this.x, vector.x), (float) Math.pow(this.y, vector.y));
     }
 
     @Override
@@ -96,7 +131,7 @@ public record Float2(float x, float y) implements Vector2<Float> {
     public @NotNull Float dot(@NotNull Vector<Float> other) {
         if (!(other instanceof Float2 vector))
             throw new IllegalArgumentException("'other' must be a Float2, found %s".formatted(other.getClass().getName()));
-        return x * vector.x() + y * vector.y();
+        return x * vector.x + y * vector.y;
     }
 
     @Override
@@ -104,7 +139,7 @@ public record Float2(float x, float y) implements Vector2<Float> {
         if (!(other instanceof Float2 vector))
             throw new IllegalArgumentException("'other' must be a Float2, found %s".formatted(other.getClass().getName()));
         double dot = this.dot(vector);
-        double det = this.x * vector.y() - this.y * vector.x();
+        double det = this.x * vector.y - this.y * vector.x;
         return Math.atan2(det, dot);
     }
 
@@ -122,8 +157,8 @@ public record Float2(float x, float y) implements Vector2<Float> {
     public @NotNull Double distance(@NotNull Vector<Float> other) {
         if (!(other instanceof Float2 vector))
             throw new IllegalArgumentException("'other' must be a Float2, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
         return Math.sqrt(dx * dx + dy * dy);
     }
 
@@ -131,8 +166,8 @@ public record Float2(float x, float y) implements Vector2<Float> {
     public @NotNull Double distanceSquared(@NotNull Vector<Float> other) {
         if (!(other instanceof Float2 vector))
             throw new IllegalArgumentException("'other' must be a Float2, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
         return (dx * dx + dy * dy);
     }
 
@@ -146,6 +181,12 @@ public record Float2(float x, float y) implements Vector2<Float> {
     @Override
     public @NotNull Float[] toArray() {
         return new Float[] {this.x, this.y};
+    }
+
+    @SuppressWarnings("SuspiciousNameCombination")
+    @Override
+    public Float2 yx() {
+        return new Float2(this.y, this.x);
     }
 
     /**

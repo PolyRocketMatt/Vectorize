@@ -8,43 +8,85 @@ import org.jetbrains.annotations.NotNull;
  * @author Matthias Kovacic
  * @since 1.0.0
  */
-public record Int3(int x, int y, int z) implements Vector3<Integer> {
+public class Int3 extends Vector3<Integer> {
+
+    protected final int x;
+    protected final int y;
+    protected final int z;
+
+    public static final Int3 ZERO = new Int3(0, 0, 0);
+    public static final Int3 ONE = new Int3(1, 1, 1);
+    public static final Int3 UNIT_X = new Int3(1, 0, 0);
+    public static final Int3 UNIT_Y = new Int3(0, 1, 0);
+    public static final Int3 UNIT_Z = new Int3(0, 0, 1);
+
+    public Int3(int x, int y, int z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public Int3(@NotNull Integer[] array) {
+        if (array.length != 3)
+            throw new IllegalArgumentException("'array' must have a length of 3, found %d".formatted(array.length));
+        this.x = array[0];
+        this.y = array[1];
+        this.z = array[2];
+    }
+
+    public Int3(Float3 vector) {
+        this.x = (int) vector.x;
+        this.y = (int) vector.y;
+        this.z = (int) vector.z;
+    }
+
+    public Int3(Double3 vector) {
+        this.x = (int) vector.x;
+        this.y = (int) vector.y;
+        this.z = (int) vector.z;
+    }
+
+    public Int3(int scalar) {
+        this.x = scalar;
+        this.y = scalar;
+        this.z = scalar;
+    }
 
     @Override
     public @NotNull Int3 add(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int3 vector))
             throw new IllegalArgumentException("'other' must be a Int3, found %s".formatted(other.getClass().getName()));
-        return new Int3(this.x + vector.x(), this.y + vector.y(), this.z + vector.z());
+        return new Int3(this.x + vector.x, this.y + vector.y, this.z + vector.z);
     }
 
     @Override
     public @NotNull Int3 subtract(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int3 vector))
             throw new IllegalArgumentException("'other' must be a Int3, found %s".formatted(other.getClass().getName()));
-        return new Int3(this.x - vector.x(), this.y - vector.y(), this.z - vector.z());
+        return new Int3(this.x - vector.x, this.y - vector.y, this.z - vector.z);
     }
 
     @Override
     public @NotNull Int3 multiply(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int3 vector))
             throw new IllegalArgumentException("'other' must be a Int3, found %s".formatted(other.getClass().getName()));
-        return new Int3(this.x * vector.x(), this.y * vector.y(), this.z * vector.z());
+        return new Int3(this.x * vector.x, this.y * vector.y, this.z * vector.z);
     }
 
     @Override
     public @NotNull Int3 divide(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int3 vector))
             throw new IllegalArgumentException("'other' must be a Int3, found %s".formatted(other.getClass().getName()));
-        if (vector.x() == 0 || vector.y() == 0 || vector.z() == 0)
-            throw new ArithmeticException("'other' cannot have a zero component (x: %d, y: %d, z: %d)".formatted(vector.x(), vector.y(), vector.z()));
-        return new Int3(this.x / vector.x(), this.y / vector.y(), this.z / vector.z());
+        if (vector.x == 0 || vector.y == 0 || vector.z == 0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %d, y: %d, z: %d)".formatted(vector.x, vector.y, vector.z));
+        return new Int3(this.x / vector.x, this.y / vector.y, this.z / vector.z);
     }
 
     @Override
     public @NotNull Int3 pow(@NotNull Vector<Integer> other) throws IllegalArgumentException {
         if (!(other instanceof Int3 vector))
             throw new IllegalArgumentException("'other' must be a Int3, found %s".formatted(other.getClass().getName()));
-        return new Int3((int) Math.pow(this.x, vector.x()), (int) Math.pow(this.y, vector.y()), (int) Math.pow(this.z, vector.z()));
+        return new Int3((int) Math.pow(this.x, vector.x), (int) Math.pow(this.y, vector.y), (int) Math.pow(this.z, vector.z));
     }
 
     @Override
@@ -96,7 +138,7 @@ public record Int3(int x, int y, int z) implements Vector3<Integer> {
     public @NotNull Integer dot(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int3 vector))
             throw new IllegalArgumentException("'other' must be a Int3, found %s".formatted(other.getClass().getName()));
-        return x * vector.x() + y * vector.y() + z * vector.z();
+        return x * vector.x + y * vector.y + z * vector.z;
     }
 
     @Override
@@ -113,9 +155,9 @@ public record Int3(int x, int y, int z) implements Vector3<Integer> {
         if (!(other instanceof Int3 vector))
             throw new IllegalArgumentException("'other' must be a Int3, found %s".formatted(other.getClass().getName()));
         return new Int3(
-                this.y * vector.z() - this.z * vector.y(),
-                this.z * vector.x() - this.x * vector.z(),
-                this.x * vector.y() - this.y * vector.x()
+                this.y * vector.z - this.z * vector.y,
+                this.z * vector.x - this.x * vector.z,
+                this.x * vector.y - this.y * vector.x
         );
     }
 
@@ -133,9 +175,9 @@ public record Int3(int x, int y, int z) implements Vector3<Integer> {
     public @NotNull Double distance(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int3 vector))
             throw new IllegalArgumentException("'other' must be a Int3, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
-        double dz = this.z - vector.z();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
+        double dz = this.z - vector.z;
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
@@ -143,9 +185,9 @@ public record Int3(int x, int y, int z) implements Vector3<Integer> {
     public @NotNull Double distanceSquared(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int3 vector))
             throw new IllegalArgumentException("'other' must be a Int3, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
-        double dz = this.z - vector.z();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
+        double dz = this.z - vector.z;
         return (dx * dx + dy * dy + dz * dz);
     }
 
@@ -173,6 +215,11 @@ public record Int3(int x, int y, int z) implements Vector3<Integer> {
     @Override
     public @NotNull Integer[] toArray() {
         return new Integer[] {this.x, this.y, this.z};
+    }
+
+    @Override
+    public Int3 zyx() {
+        return new Int3(this.z, this.y, this.x);
     }
 
     /**

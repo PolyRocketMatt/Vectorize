@@ -8,36 +8,85 @@ import org.jetbrains.annotations.NotNull;
  * @author Matthias Kovacic
  * @since 1.0.0
  */
-public record Float4(float x, float y, float z, float w) implements Vector4<Float> {
+public class Float4 extends Vector4<Float> {
+
+    protected final float x;
+    protected final float y;
+    protected final float z;
+    protected final float w;
+
+    public static final Float4 ZERO = new Float4(0.0f, 0.0f, 0.0f, 0.0f);
+    public static final Float4 ONE = new Float4(1.0f, 1.0f, 1.0f, 1.0f);
+    public static final Float4 UNIT_X = new Float4(1.0f, 0.0f, 0.0f, 0.0f);
+    public static final Float4 UNIT_Y = new Float4(0.0f, 1.0f, 0.0f, 0.0f);
+    public static final Float4 UNIT_Z = new Float4(0.0f, 0.0f, 1.0f, 0.0f);
+    public static final Float4 UNIT_W = new Float4(0.0f, 0.0f, 0.0f, 1.0f);
+
+    public Float4(float x, float y, float z, float w) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    public Float4(@NotNull Float[] array) {
+        if (array.length != 4)
+            throw new IllegalArgumentException("'array' must have a length of 4, found %d".formatted(array.length));
+        this.x = array[0];
+        this.y = array[1];
+        this.z = array[2];
+        this.w = array[3];
+    }
+
+    public Float4(Int4 vector) {
+        this.x = (float) vector.x;
+        this.y = (float) vector.y;
+        this.z = (float) vector.z;
+        this.w = (float) vector.w;
+    }
+
+    public Float4(Double4 vector) {
+        this.x = (float) vector.x;
+        this.y = (float) vector.y;
+        this.z = (float) vector.z;
+        this.w = (float) vector.w;
+    }
+
+    public Float4(float scalar) {
+        this.x = scalar;
+        this.y = scalar;
+        this.z = scalar;
+        this.w = scalar;
+    }
 
     @Override
     public @NotNull Float4 add(@NotNull Vector<Float> other) {
         if (!(other instanceof Float4 vector))
             throw new IllegalArgumentException("'other' must be a Float4, found %s".formatted(other.getClass().getName()));
-        return new Float4(this.x + vector.x(), this.y + vector.y(), this.z + vector.z(), this.w + vector.w());
+        return new Float4(this.x + vector.x, this.y + vector.y, this.z + vector.z, this.w + vector.w);
     }
 
     @Override
     public @NotNull Float4 subtract(@NotNull Vector<Float> other) {
         if (!(other instanceof Float4 vector))
             throw new IllegalArgumentException("'other' must be a Float4, found %s".formatted(other.getClass().getName()));
-        return new Float4(this.x - vector.x(), this.y - vector.y(), this.z - vector.z(), this.w - vector.w());
+        return new Float4(this.x - vector.x, this.y - vector.y, this.z - vector.z, this.w - vector.w);
     }
 
     @Override
     public @NotNull Float4 multiply(@NotNull Vector<Float> other) {
         if (!(other instanceof Float4 vector))
             throw new IllegalArgumentException("'other' must be a Float4, found %s".formatted(other.getClass().getName()));
-        return new Float4(this.x * vector.x(), this.y * vector.y(), this.z * vector.z(), this.w * vector.w());
+        return new Float4(this.x * vector.x, this.y * vector.y, this.z * vector.z, this.w * vector.w);
     }
 
     @Override
     public @NotNull Float4 divide(@NotNull Vector<Float> other) {
         if (!(other instanceof Float4 vector))
             throw new IllegalArgumentException("'other' must be a Float4, found %s".formatted(other.getClass().getName()));
-        if (vector.x() == 0.0f || vector.y() == 0.0f || vector.z() == 0.0f || vector.w() == 0.0f)
-            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f, z: %f, w: %f)".formatted(vector.x(), vector.y(), vector.z(), vector.w()));
-        return new Float4(this.x / vector.x(), this.y / vector.y(), this.z / vector.z(), this.w / vector.w());
+        if (vector.x == 0.0f || vector.y == 0.0f || vector.z == 0.0f || vector.w == 0.0f)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f, z: %f, w: %f)".formatted(vector.x, vector.y, vector.z, vector.w));
+        return new Float4(this.x / vector.x, this.y / vector.y, this.z / vector.z, this.w / vector.w);
     }
 
     @Override
@@ -45,8 +94,8 @@ public record Float4(float x, float y, float z, float w) implements Vector4<Floa
         if (!(other instanceof Float4 vector))
             throw new IllegalArgumentException("'other' must be a Float4, found %s".formatted(other.getClass().getName()));
         return new Float4(
-                (float) Math.pow(this.x, vector.x()), (float) Math.pow(this.y, vector.y()),
-                (float) Math.pow(this.z, vector.z()), (float) Math.pow(this.w, vector.w())
+                (float) Math.pow(this.x, vector.x), (float) Math.pow(this.y, vector.y),
+                (float) Math.pow(this.z, vector.z), (float) Math.pow(this.w, vector.w)
         );
     }
 
@@ -102,7 +151,7 @@ public record Float4(float x, float y, float z, float w) implements Vector4<Floa
     public @NotNull Float dot(@NotNull Vector<Float> other) {
         if (!(other instanceof Float4 vector))
             throw new IllegalArgumentException("'other' must be a Float4, found %s".formatted(other.getClass().getName()));
-        return x * vector.x() + y * vector.y() + z * vector.z() + w * vector.w();
+        return x * vector.x + y * vector.y + z * vector.z + w * vector.w;
     }
 
     @Override
@@ -130,10 +179,10 @@ public record Float4(float x, float y, float z, float w) implements Vector4<Floa
     public @NotNull Double distance(@NotNull Vector<Float> other) {
         if (!(other instanceof Float4 vector))
             throw new IllegalArgumentException("'other' must be a Float4, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
-        double dz = this.z - vector.z();
-        double dw = this.w - vector.w();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
+        double dz = this.z - vector.z;
+        double dw = this.w - vector.w;
         return Math.sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
     }
 
@@ -141,10 +190,10 @@ public record Float4(float x, float y, float z, float w) implements Vector4<Floa
     public @NotNull Double distanceSquared(@NotNull Vector<Float> other) {
         if (!(other instanceof Float4 vector))
             throw new IllegalArgumentException("'other' must be a Float4, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
-        double dz = this.z - vector.z();
-        double dw = this.w - vector.w();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
+        double dz = this.z - vector.z;
+        double dw = this.w - vector.w;
         return (dx * dx + dy * dy + dz * dz + dw * dw);
     }
 

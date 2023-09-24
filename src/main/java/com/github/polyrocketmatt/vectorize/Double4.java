@@ -8,43 +8,92 @@ import org.jetbrains.annotations.NotNull;
  * @author Matthias Kovacic
  * @since 1.0.0
  */
-public record Double4(double x, double y, double z, double w) implements Vector4<Double> {
+public class Double4 extends Vector4<Double> {
+
+    protected final double x;
+    protected final double y;
+    protected final double z;
+    protected final double w;
+
+    public static final Double4 ZERO = new Double4(0.0, 0.0, 0.0, 0.0);
+    public static final Double4 ONE = new Double4(1.0, 1.0, 1.0, 1.0);
+    public static final Double4 UNIT_X = new Double4(1.0, 0.0, 0.0, 0.0);
+    public static final Double4 UNIT_Y = new Double4(0.0, 1.0, 0.0, 0.0);
+    public static final Double4 UNIT_Z = new Double4(0.0, 0.0, 1.0, 0.0);
+    public static final Double4 UNIT_W = new Double4(0.0, 0.0, 0.0, 1.0);
+
+    public Double4(double x, double y, double z, double w) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    public Double4(@NotNull Double[] array) {
+        if (array.length != 4)
+            throw new IllegalArgumentException("'array' must have a length of 4, found %d".formatted(array.length));
+        this.x = array[0];
+        this.y = array[1];
+        this.z = array[2];
+        this.w = array[3];
+    }
+
+    public Double4(Int4 vector) {
+        this.x = (double) vector.x;
+        this.y = (double) vector.y;
+        this.z = (double) vector.z;
+        this.w = (double) vector.w;
+    }
+
+    public Double4(Float4 vector) {
+        this.x = vector.x;
+        this.y = vector.y;
+        this.z = vector.z;
+        this.w = vector.w;
+    }
+
+    public Double4(double scalar) {
+        this.x = scalar;
+        this.y = scalar;
+        this.z = scalar;
+        this.w = scalar;
+    }
 
     @Override
     public @NotNull Double4 add(@NotNull Vector<Double> other) {
         if (!(other instanceof Double4 vector))
             throw new IllegalArgumentException("'other' must be a Double4, found %s".formatted(other.getClass().getName()));
-        return new Double4(this.x + vector.x(), this.y + vector.y(), this.z + vector.z(), this.w + vector.w());
+        return new Double4(this.x + vector.x, this.y + vector.y, this.z + vector.z, this.w + vector.w);
     }
 
     @Override
     public @NotNull Double4 subtract(@NotNull Vector<Double> other) {
         if (!(other instanceof Double4 vector))
             throw new IllegalArgumentException("'other' must be a Double4, found %s".formatted(other.getClass().getName()));
-        return new Double4(this.x - vector.x(), this.y - vector.y(), this.z - vector.z(), this.w - vector.w());
+        return new Double4(this.x - vector.x, this.y - vector.y, this.z - vector.z, this.w - vector.w);
     }
 
     @Override
     public @NotNull Double4 multiply(@NotNull Vector<Double> other) {
         if (!(other instanceof Double4 vector))
             throw new IllegalArgumentException("'other' must be a Double4, found %s".formatted(other.getClass().getName()));
-        return new Double4(this.x * vector.x(), this.y * vector.y(), this.z * vector.z(), this.w * vector.w());
+        return new Double4(this.x * vector.x, this.y * vector.y, this.z * vector.z, this.w * vector.w);
     }
 
     @Override
     public @NotNull Double4 divide(@NotNull Vector<Double> other) {
         if (!(other instanceof Double4 vector))
             throw new IllegalArgumentException("'other' must be a Double4, found %s".formatted(other.getClass().getName()));
-        if (vector.x() == 0.0 || vector.y() == 0.0 || vector.z() == 0.0 || vector.w() == 0.0)
-            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f, z: %f, w: %f)".formatted(vector.x(), vector.y(), vector.z(), vector.w()));
-        return new Double4(this.x / vector.x(), this.y / vector.y(), this.z / vector.z(), this.w / vector.w());
+        if (vector.x == 0.0 || vector.y == 0.0 || vector.z == 0.0 || vector.w == 0.0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %f, y: %f, z: %f, w: %f)".formatted(vector.x, vector.y, vector.z, vector.w));
+        return new Double4(this.x / vector.x, this.y / vector.y, this.z / vector.z, this.w / vector.w);
     }
 
     @Override
     public @NotNull Double4 pow(@NotNull Vector<Double> other) throws IllegalArgumentException {
         if (!(other instanceof Double4 vector))
             throw new IllegalArgumentException("'other' must be a Double4, found %s".formatted(other.getClass().getName()));
-        return new Double4(Math.pow(this.x, vector.x()), Math.pow(this.y, vector.y()), Math.pow(this.z, vector.z()), Math.pow(this.w, vector.w()));
+        return new Double4(Math.pow(this.x, vector.x), Math.pow(this.y, vector.y), Math.pow(this.z, vector.z), Math.pow(this.w, vector.w));
     }
 
     @Override
@@ -96,7 +145,7 @@ public record Double4(double x, double y, double z, double w) implements Vector4
     public @NotNull Double dot(@NotNull Vector<Double> other) {
         if (!(other instanceof Double4 vector))
             throw new IllegalArgumentException("'other' must be a Double4, found %s".formatted(other.getClass().getName()));
-        return x * vector.x() + y * vector.y() + z * vector.z() + w * vector.w();
+        return x * vector.x + y * vector.y + z * vector.z + w * vector.w;
     }
 
     @Override
@@ -124,10 +173,10 @@ public record Double4(double x, double y, double z, double w) implements Vector4
     public @NotNull Double distance(@NotNull Vector<Double> other) {
         if (!(other instanceof Double4 vector))
             throw new IllegalArgumentException("'other' must be a Double4, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
-        double dz = this.z - vector.z();
-        double dw = this.w - vector.w();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
+        double dz = this.z - vector.z;
+        double dw = this.w - vector.w;
         return Math.sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
     }
 
@@ -135,10 +184,10 @@ public record Double4(double x, double y, double z, double w) implements Vector4
     public @NotNull Double distanceSquared(@NotNull Vector<Double> other) {
         if (!(other instanceof Double4 vector))
             throw new IllegalArgumentException("'other' must be a Double4, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
-        double dz = this.z - vector.z();
-        double dw = this.w - vector.w();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
+        double dz = this.z - vector.z;
+        double dw = this.w - vector.w;
         return (dx * dx + dy * dy + dz * dz + dw * dw);
     }
 

@@ -8,43 +8,92 @@ import org.jetbrains.annotations.NotNull;
  * @author Matthias Kovacic
  * @since 1.0.0
  */
-public record Int4(int x, int y, int z, int w) implements Vector4<Integer> {
+public class Int4 extends Vector4<Integer> {
+
+    protected final int x;
+    protected final int y;
+    protected final int z;
+    protected final int w;
+
+    public static final Int4 ZERO = new Int4(0, 0, 0, 0);
+    public static final Int4 ONE = new Int4(1, 1, 1, 1);
+    public static final Int4 UNIT_X = new Int4(1, 0, 0, 0);
+    public static final Int4 UNIT_Y = new Int4(0, 1, 0, 0);
+    public static final Int4 UNIT_Z = new Int4(0, 0, 1, 0);
+    public static final Int4 UNIT_W = new Int4(0, 0, 0, 1);
+
+    public Int4(int x, int y, int z, int w) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    public Int4(@NotNull Integer[] array) {
+        if (array.length != 4)
+            throw new IllegalArgumentException("'array' must have a length of 4, found %d".formatted(array.length));
+        this.x = array[0];
+        this.y = array[1];
+        this.z = array[2];
+        this.w = array[3];
+    }
+
+    public Int4(Double4 vector) {
+        this.x = (int) vector.x;
+        this.y = (int) vector.y;
+        this.z = (int) vector.z;
+        this.w = (int) vector.w;
+    }
+
+    public Int4(Float4 vector) {
+        this.x = (int) vector.x;
+        this.y = (int) vector.y;
+        this.z = (int) vector.z;
+        this.w = (int) vector.w;
+    }
+
+    public Int4(int scalar) {
+        this.x = scalar;
+        this.y = scalar;
+        this.z = scalar;
+        this.w = scalar;
+    }
 
     @Override
     public @NotNull Int4 add(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int4 vector))
             throw new IllegalArgumentException("'other' must be a Int4, found %s".formatted(other.getClass().getName()));
-        return new Int4(this.x + vector.x(), this.y + vector.y(), this.z + vector.z(), this.w + vector.w());
+        return new Int4(this.x + vector.x, this.y + vector.y, this.z + vector.z, this.w + vector.w);
     }
 
     @Override
     public @NotNull Int4 subtract(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int4 vector))
             throw new IllegalArgumentException("'other' must be a Int4, found %s".formatted(other.getClass().getName()));
-        return new Int4(this.x - vector.x(), this.y - vector.y(), this.z - vector.z(), this.w - vector.w());
+        return new Int4(this.x - vector.x, this.y - vector.y, this.z - vector.z, this.w - vector.w);
     }
 
     @Override
     public @NotNull Int4 multiply(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int4 vector))
             throw new IllegalArgumentException("'other' must be a Int4, found %s".formatted(other.getClass().getName()));
-        return new Int4(this.x * vector.x(), this.y * vector.y(), this.z * vector.z(), this.w * vector.w());
+        return new Int4(this.x * vector.x, this.y * vector.y, this.z * vector.z, this.w * vector.w);
     }
 
     @Override
     public @NotNull Int4 divide(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int4 vector))
             throw new IllegalArgumentException("'other' must be a Int4, found %s".formatted(other.getClass().getName()));
-        if (vector.x() == 0 || vector.y() == 0 || vector.z() == 0 || vector.w() == 0)
-            throw new ArithmeticException("'other' cannot have a zero component (x: %d, y: %d, z: %d, w: %d)".formatted(vector.x(), vector.y(), vector.z(), vector.w()));
-        return new Int4(this.x / vector.x(), this.y / vector.y(), this.z / vector.z(), this.w / vector.w());
+        if (vector.x == 0 || vector.y == 0 || vector.z == 0 || vector.w == 0)
+            throw new ArithmeticException("'other' cannot have a zero component (x: %d, y: %d, z: %d, w: %d)".formatted(vector.x, vector.y, vector.z, vector.w));
+        return new Int4(this.x / vector.x, this.y / vector.y, this.z / vector.z, this.w / vector.w);
     }
 
     @Override
     public @NotNull Int4 pow(@NotNull Vector<Integer> other) throws IllegalArgumentException {
         if (!(other instanceof Int4 vector))
             throw new IllegalArgumentException("'other' must be a Int4, found %s".formatted(other.getClass().getName()));
-        return new Int4((int) Math.pow(this.x, vector.x()), (int) Math.pow(this.y, vector.y()), (int) Math.pow(this.z, vector.z()), (int) Math.pow(this.w, vector.w()));
+        return new Int4((int) Math.pow(this.x, vector.x), (int) Math.pow(this.y, vector.y), (int) Math.pow(this.z, vector.z), (int) Math.pow(this.w, vector.w));
     }
 
     @Override
@@ -96,7 +145,7 @@ public record Int4(int x, int y, int z, int w) implements Vector4<Integer> {
     public @NotNull Integer dot(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int4 vector))
             throw new IllegalArgumentException("'other' must be a Int4, found %s".formatted(other.getClass().getName()));
-        return x * vector.x() + y * vector.y() + z * vector.z() + w * vector.w();
+        return x * vector.x + y * vector.y + z * vector.z + w * vector.w;
     }
 
     @Override
@@ -124,10 +173,10 @@ public record Int4(int x, int y, int z, int w) implements Vector4<Integer> {
     public @NotNull Double distance(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int4 vector))
             throw new IllegalArgumentException("'other' must be a Int4, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
-        double dz = this.z - vector.z();
-        double dw = this.w - vector.w();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
+        double dz = this.z - vector.z;
+        double dw = this.w - vector.w;
         return Math.sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
     }
 
@@ -135,10 +184,10 @@ public record Int4(int x, int y, int z, int w) implements Vector4<Integer> {
     public @NotNull Double distanceSquared(@NotNull Vector<Integer> other) {
         if (!(other instanceof Int4 vector))
             throw new IllegalArgumentException("'other' must be a Int4, found %s".formatted(other.getClass().getName()));
-        double dx = this.x - vector.x();
-        double dy = this.y - vector.y();
-        double dz = this.z - vector.z();
-        double dw = this.w - vector.w();
+        double dx = this.x - vector.x;
+        double dy = this.y - vector.y;
+        double dz = this.z - vector.z;
+        double dw = this.w - vector.w;
         return (dx * dx + dy * dy + dz * dz + dw * dw);
     }
 

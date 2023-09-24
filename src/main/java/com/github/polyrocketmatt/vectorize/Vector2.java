@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Matthias Kovacic
  * @since 1.0.0
  */
-public interface Vector2<T> extends Vector<T> {
+public abstract class Vector2<T> implements Vector<T>, Swizzle2<T> {
 
     /**
      * Rotates the vector by the given angle in radians.
@@ -17,6 +17,6 @@ public interface Vector2<T> extends Vector<T> {
      * @param angle The angle in radians.
      * @return A new vector rotated by the given angle.
      */
-    @NotNull Vector<Double> rotate(double angle);
+    public abstract @NotNull Vector<Double> rotate(double angle);
 
 }

@@ -7,4 +7,4 @@ package com.github.polyrocketmatt.vectorize;
  * @author Matthias Kovacic
  * @since 1.0.2
  */
-public interface Vector4<T> extends Vector<T> { }
+public abstract class Vector4<T> implements Vector<T> { }
