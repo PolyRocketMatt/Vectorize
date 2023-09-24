@@ -56,9 +56,13 @@ Vectorize offers the following types:
 The following utility methods are available:
 
 - `Vector<T>.add(Vector<T> other)`: Adds two vectors of the same type
+- `Vector<T>.add(T x, T y, ...)`: Adds components to a vector 
 - `Vector<T>.subtract(Vector<T> other)`: Subtracts two vectors of the same type
+- `Vector<T>.subtract(T x, T y, ...)`: Subtracts components from a vector
 - `Vector<T>.multiply(Vector<T> other)`: Multiplies two vectors of the same type
+- `Vector<T>.multiply(T x, T y, ...)`: Multiplies components of a vector
 - `Vector<T>.divide(Vector<T> other)`: Divides two vectors of the same type
+- `Vector<T>.divide(T x, T y, ...)`: Divides components of a vector
 - `Vector<T>.pow(Vector<T> power)`: Raises two vectors of the same type to the power of each other
 - `Vector<T>.add(T scalar)`: Adds a scalar to a vector
 - `Vector<T>.subtract(T scalar)`: Subtracts a scalar from a vector
