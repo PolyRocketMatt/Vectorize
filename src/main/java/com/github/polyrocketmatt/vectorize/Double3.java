@@ -218,6 +218,21 @@ public class Double3 extends Vector3<Double> {
     }
 
     @Override
+    public @NotNull Int3 floor() {
+        return new Int3((int) Math.floor(this.x), (int) Math.floor(this.y), (int) Math.floor(this.z));
+    }
+
+    @Override
+    public @NotNull Int3 ceil() {
+        return new Int3((int) Math.ceil(this.x), (int) Math.ceil(this.y), (int) Math.ceil(this.z));
+    }
+
+    @Override
+    public @NotNull Double3 fract() {
+        return this.subtract(this.floor().toDouble());
+    }
+
+    @Override
     public Double3 zyx() {
         return new Double3(this.z, this.y, this.x);
     }

@@ -196,6 +196,21 @@ public class Int4 extends Vector4<Integer> {
         return new Integer[] {this.x, this.y, this.z, this.w};
     }
 
+    @Override
+    public @NotNull Int4 floor() {
+        return this;
+    }
+
+    @Override
+    public @NotNull Int4 ceil() {
+        return this;
+    }
+
+    @Override
+    public @NotNull Int4 fract() {
+        return this;
+    }
+
     /**
      * Converts the vector to an {@link Double4}.
      *

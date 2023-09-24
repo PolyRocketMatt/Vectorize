@@ -183,6 +183,21 @@ public class Float2 extends Vector2<Float> {
         return new Float[] {this.x, this.y};
     }
 
+    @Override
+    public @NotNull Int2 floor() {
+        return new Int2((int) Math.floor(this.x), (int) Math.floor(this.y));
+    }
+
+    @Override
+    public @NotNull Int2 ceil() {
+        return new Int2((int) Math.ceil(this.x), (int) Math.ceil(this.y));
+    }
+
+    @Override
+    public @NotNull Float2 fract() {
+        return this.subtract(this.floor().toFloat());
+    }
+
     @SuppressWarnings("SuspiciousNameCombination")
     @Override
     public Float2 yx() {
