@@ -2,6 +2,8 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 /**
  * Represents an immutable 4-dimensional vector of integers.
  *
@@ -249,6 +251,18 @@ public class Int4 extends Vector4<Integer> {
      */
     public Float4 toFloat() {
         return new Float4(this.x, this.y, this.z, this.w);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Int4 int4)) return false;
+        return x == int4.x && y == int4.y && z == int4.z && w == int4.w;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z, w);
     }
 
     @Override

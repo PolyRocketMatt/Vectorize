@@ -2,6 +2,8 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 /**
  * Represents an immutable 3-dimensional vector of integers.
  *
@@ -275,6 +277,46 @@ public class Int3 extends Vector3<Integer> {
      */
     public Float3 toFloat() {
         return new Float3(this.x, this.y, this.z);
+    }
+
+    public Int3 relative(Direction direction) {
+        return new Int3(this.x + direction.getOffsetX(), this.y + direction.getOffsetY(), this.z + direction.getOffsetZ());
+    }
+
+    public Int3 up() {
+        return relative(Direction.UP);
+    }
+
+    public Int3 down() {
+        return relative(Direction.DOWN);
+    }
+
+    public Int3 north() {
+        return relative(Direction.NORTH);
+    }
+
+    public Int3 south() {
+        return relative(Direction.SOUTH);
+    }
+
+    public Int3 east() {
+        return relative(Direction.EAST);
+    }
+
+    public Int3 west() {
+        return relative(Direction.WEST);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Int3 int3)) return false;
+        return x == int3.x && y == int3.y && z == int3.z;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
     }
 
     @Override

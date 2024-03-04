@@ -2,6 +2,8 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 /**
  * Represents an immutable 2-dimensional vector of integers.
  *
@@ -242,6 +244,18 @@ public class Int2 extends Vector2<Integer> {
      */
     public Float2 toFloat() {
         return new Float2(this.x, this.y);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Int2 int2)) return false;
+        return x == int2.x && y == int2.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     @Override

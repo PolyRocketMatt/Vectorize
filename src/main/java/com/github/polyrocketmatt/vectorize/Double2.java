@@ -2,6 +2,8 @@ package com.github.polyrocketmatt.vectorize;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 /**
  * Represents an immutable 2-dimensional vector of doubles.
  *
@@ -242,6 +244,18 @@ public class Double2 extends Vector2<Double> {
      */
     public @NotNull Float2 toFloat() {
         return new Float2((float) this.x, (float) this.y);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Double2 double2)) return false;
+        return Double.compare(double2.x, x) == 0 && Double.compare(double2.y, y) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     @Override
